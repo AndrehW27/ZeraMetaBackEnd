@@ -27,6 +27,9 @@ import cors from "cors";
 import usuarioRoutes from "./routes/usuarioRoutes.js";
 import metaRoutes from "./routes/metaRoutes.js";
 import rankRoutes from "./routes/rankRoutes.js";
+import dotenv from "dotenv";
+
+dotenv.config(); // 👈 must be before mongoose.connect()
 
 const app = express();
 
@@ -34,7 +37,7 @@ app.use(cors());
 app.use(express.json());
 
 // Conectar ao MongoDB
-mongoose.connect("mongodb+srv://andrehwillian_db_user:ANJtKEuhaL9Lx8UM@cluster0.fqblerk.mongodb.net/zeraMeta", {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   dbName: "zeraMeta" // 👈 força o banco a ser "zeraMeta"
