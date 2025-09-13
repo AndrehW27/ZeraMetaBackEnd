@@ -1,5 +1,40 @@
-# Node
-/node_modules
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Enviromentment variables
+# Env files (secrets)
 .env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+logs/*.log
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Build outputs
+dist/
+build/
+coverage/
+
+# Editor / OS files
+.DS_Store
+Thumbs.db
+*.swp
+
+# IDE settings
+.vscode/
+.idea/
+
+# Insomnia
+.insomnia/
+
+# Optional: if you export Insomnia collections to JSON, you may want to track them
+# Uncomment the next line if you want to IGNORE exported collections
+# *.json
