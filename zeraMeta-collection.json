@@ -1,0 +1,412 @@
+type: collection.insomnia.rest/5.0
+name: ZeraMeta collection
+meta:
+  id: wrk_1f1bdd50d33a4582a3f83a50b840bf38
+  created: 1756260978972
+  modified: 1756261009590
+  description: ""
+collection:
+  - name: User
+    meta:
+      id: fld_37b2462429814a68a2a89240b4296c98
+      created: 1757707581758
+      modified: 1757707655248
+      sortKey: -1757707614512
+      description: ""
+    children:
+      - url: http://localhost:3000/usuario/68c0b4a8932211b04d202395
+        name: Get user
+        meta:
+          id: req_bb3c3708d2734b6cac3519d3328042cd
+          created: 1757470030201
+          modified: 1757779477544
+          isPrivate: false
+          description: ""
+          sortKey: -1757707650756
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.5.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/usuario
+        name: Get all users
+        meta:
+          id: req_149d7e0c56fb440692fbab0fd47a1a77
+          created: 1757710379232
+          modified: 1757714903534
+          isPrivate: false
+          description: ""
+          sortKey: -1757707650656
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/usuario
+        name: Create user
+        meta:
+          id: req_dddaf7dc6b8e4fa6bc956e5c8b60f919
+          created: 1757714620741
+          modified: 1757714770893
+          isPrivate: false
+          description: ""
+          sortKey: -1757714620741
+        method: POST
+        body:
+          mimeType: application/json
+          text: |+
+            {
+               "nome": "Teste",
+              "email": "teste@email.com",
+              "senha": "12345",     
+              "telefone": "11987654321",
+              "plano": "FREE",
+              "foto_perfil_url": "data:image/png;base64,..."
+            }
+
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/usuario/68c0b4a8932211b04d202395
+        name: Update user
+        meta:
+          id: req_bfdbe04466bb43e28cd7cbd8f53694a4
+          created: 1757779534892
+          modified: 1757779604068
+          isPrivate: false
+          description: ""
+          sortKey: -1757707650556
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "nome": "André Willian"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/usuario/68c499b67c295e050219e399
+        name: Delete user
+        meta:
+          id: req_82f15570f0d94a14a137d36975b3a494
+          created: 1757779621896
+          modified: 1757779647644
+          isPrivate: false
+          description: ""
+          sortKey: -1757707650456
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Goals
+    meta:
+      id: fld_2bf71e227e8c491ab0071bf0f0062d84
+      created: 1757707614212
+      modified: 1757707665041
+      sortKey: -1757707614212
+      description: ""
+    children:
+      - url: http://localhost:3000/meta
+        name: Create goal
+        meta:
+          id: req_64391ac3fdb84f83a15057a2af5de347
+          created: 1756260979077
+          modified: 1757714298635
+          isPrivate: false
+          description: ""
+          sortKey: -1757707635373
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"titulo": "TEST POST DB",
+            	"progresso": "50",
+            	"teste": "teste"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.5.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/meta
+        name: Get all goals
+        meta:
+          id: req_98a495b678234a0d95bb10bfd8da7cac
+          created: 1756264459491
+          modified: 1757710709147
+          isPrivate: false
+          description: ""
+          sortKey: -1757707635323
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.5.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/meta/68c4977b2041c4e523ce67e7
+        name: Update goal
+        meta:
+          id: req_74fd6d7b07474b799c1736870e441f2a
+          created: 1756264772563
+          modified: 1757714354649
+          isPrivate: false
+          description: ""
+          sortKey: -1757707635273
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"titulo": "changed post db"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.5.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/meta/68c4977b2041c4e523ce67e7
+        name: Delete goal
+        meta:
+          id: req_ad4f6f18dc2944b5a0675a8d385708e3
+          created: 1756439620013
+          modified: 1757714386227
+          isPrivate: false
+          description: ""
+          sortKey: -1757707634973
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.5.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Rank
+    meta:
+      id: fld_505782583fa2400d8b63d893b6359ab3
+      created: 1757707710334
+      modified: 1757707869460
+      sortKey: -1757707614362
+      description: ""
+    children:
+      - url: http://localhost:3000/rank/68c0b4a8932211b04d202395
+        name: Get rank by user id
+        meta:
+          id: req_1a40a2f0f9be4592b9b28d95ca1a0f53
+          created: 1757707913149
+          modified: 1757708815639
+          isPrivate: false
+          description: ""
+          sortKey: -1757707913149
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/rank
+        name: Get all ranks
+        meta:
+          id: req_8744495e43504c299fc3f956f0bc061a
+          created: 1757709688118
+          modified: 1757709691918
+          isPrivate: false
+          description: ""
+          sortKey: -1757707913249
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/rank
+        name: Create rank
+        meta:
+          id: req_60e68305fb694bca8a796b338196fbc3
+          created: 1757709710667
+          modified: 1757709819303
+          isPrivate: false
+          description: ""
+          sortKey: -1757709710667
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "usuario_id": "68c0b4a8932211b04d202395", 
+              "nivel": 10,
+              "experiencia": 8000,
+              "titulo": "Master de Metas"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/rank/68c4860030a59ff25ec109f1
+        name: Update rank
+        meta:
+          id: req_a2253dae72334ea4a72e848f78e48f76
+          created: 1757710131386
+          modified: 1757710222158
+          isPrivate: false
+          description: ""
+          sortKey: -1757707913049
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "usuario_id": "68c0b4a8932211b04d202395", 
+              "nivel": 11,
+              "experiencia": 8000,
+              "titulo": "Master de Metas"
+            }
+        parameters:
+          - id: pair_8b12c0e34d1c43bfbece278d85fe05ec
+            name: ""
+            value: ""
+            description: ""
+            disabled: false
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/rank/68c4860030a59ff25ec109f1
+        name: Delete rank
+        meta:
+          id: req_114a2a72a2c34d64ad886899d342be8f
+          created: 1757710385255
+          modified: 1757710410970
+          isPrivate: false
+          description: ""
+          sortKey: -1757707912949
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_7d7edc14fc7e60e6e3135d38aef75136dfd51f51
+    created: 1756260978979
+    modified: 1756260978979
+environments:
+  name: Base Environment
+  meta:
+    id: env_7d7edc14fc7e60e6e3135d38aef75136dfd51f51
+    created: 1756260978976
+    modified: 1756260978976
+    isPrivate: false

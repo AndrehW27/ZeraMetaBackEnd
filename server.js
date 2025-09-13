@@ -1,19 +1,79 @@
+// import mongoose from "mongoose";
+
+// mongoose.connect("mongodb+srv://andrehwillian_db_user:ANJtKEuhaL9Lx8UM@<cluster>.mongodb.net/<banco>?retryWrites=true&w=majority")
+//   .then(() => console.log("MongoDB conectado!"))
+//   .catch(err => console.error("Erro de conexão:", err));
+// ----------------------------------------------------------------------------
+
+// import express from "express";
+// import mongoose from "mongoose";
+// import usuarioRoutes from "./routes/usuarioRoutes.js";
+
+// const app = express();
+// app.use(express.json());
+
+// mongoose.connect("mongodb+srv://andrehwillian_db_user:ANJtKEuhaL9Lx8UM@cluster0.fqblerk.mongodb.net/")
+//   .then(() => console.log("MongoDB conectado!"))
+//   .catch(err => console.error(err));
+
+// // Usando a rota
+// app.use("/usuario", usuarioRoutes);
+
+// app.listen(3000, () => console.log("Servidor rodando na porta 3000"));
+
 import express from "express";
+import mongoose from "mongoose";
 import cors from "cors";
+import usuarioRoutes from "./routes/usuarioRoutes.js";
 import metaRoutes from "./routes/metaRoutes.js";
+import rankRoutes from "./routes/rankRoutes.js";
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
-// Rotas de metas
-app.use("/api/metas", metaRoutes);
+// Conectar ao MongoDB
+mongoose.connect("mongodb+srv://andrehwillian_db_user:ANJtKEuhaL9Lx8UM@cluster0.fqblerk.mongodb.net/zeraMeta", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  dbName: "zeraMeta" // 👈 força o banco a ser "zeraMeta"
+})
+.then(() => {
+  console.log("MongoDB conectado");
+  console.log("Banco conectado:", mongoose.connection.name);
+})
+.catch(err => console.error("Erro ao conectar no MongoDB:", err));
+
+// Usar as rotas
+app.use("/usuario", usuarioRoutes);
+app.use("/meta", metaRoutes);
+app.use("/rank", rankRoutes);
 
 // Subir servidor
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor rodando na porta ${PORT}`);
+app.listen(3000, () => {
+  console.log("Servidor rodando na porta 3000");
+  console.log("Banco conectado:", mongoose.connection.name);
 });
+
+
+// ----------------------------------------------------------------
+// import express from "express";
+// import cors from "cors";
+// import metaRoutes from "./routes/metaRoutes.js";
+
+// const app = express();
+// app.use(cors());
+// app.use(express.json());
+
+// // Rotas de metas
+// app.use("/api/metas", metaRoutes);
+
+// // Subir servidor
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => {
+//   console.log(`🚀 Servidor rodando na porta ${PORT}`);
+// });
 
 
 
