@@ -14,12 +14,12 @@ collection:
       sortKey: -1757707614512
       description: ""
     children:
-      - url: http://localhost:3000/usuario/68c0b4a8932211b04d202395
-        name: Get user
+      - url: http://localhost:3000/usuario/68ca2c9ff416c09e8f7cd996
+        name: Get user by Id
         meta:
           id: req_bb3c3708d2734b6cac3519d3328042cd
           created: 1757470030201
-          modified: 1757779477544
+          modified: 1758080292876
           isPrivate: false
           description: ""
           sortKey: -1757707650756
@@ -61,7 +61,7 @@ collection:
         meta:
           id: req_dddaf7dc6b8e4fa6bc956e5c8b60f919
           created: 1757714620741
-          modified: 1757714770893
+          modified: 1757819767816
           isPrivate: false
           description: ""
           sortKey: -1757714620741
@@ -70,7 +70,7 @@ collection:
           mimeType: application/json
           text: |+
             {
-               "nome": "Teste",
+              "nome": "Teste",
               "email": "teste@email.com",
               "senha": "12345",     
               "telefone": "11987654321",
@@ -91,12 +91,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:3000/usuario/68c0b4a8932211b04d202395
+      - url: http://localhost:3000/usuario/68c987d41cf924d02d5af109
         name: Update user
         meta:
           id: req_bfdbe04466bb43e28cd7cbd8f53694a4
           created: 1757779534892
-          modified: 1757779604068
+          modified: 1758077085084
           isPrivate: false
           description: ""
           sortKey: -1757707650556
@@ -105,7 +105,7 @@ collection:
           mimeType: application/json
           text: |-
             {
-              "nome": "André Willian"
+              "email": "sdas@dasdas.com"
             }
         headers:
           - name: Content-Type
@@ -120,12 +120,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:3000/usuario/68c499b67c295e050219e399
+      - url: http://localhost:3000/usuario/68c98d611cf924d02d5af12f
         name: Delete user
         meta:
           id: req_82f15570f0d94a14a137d36975b3a494
           created: 1757779621896
-          modified: 1757779647644
+          modified: 1758078747136
           isPrivate: false
           description: ""
           sortKey: -1757707650456
@@ -145,8 +145,8 @@ collection:
     meta:
       id: fld_2bf71e227e8c491ab0071bf0f0062d84
       created: 1757707614212
-      modified: 1757707665041
-      sortKey: -1757707614212
+      modified: 1758061043870
+      sortKey: -1757707614437
       description: ""
     children:
       - url: http://localhost:3000/meta
@@ -154,18 +154,22 @@ collection:
         meta:
           id: req_64391ac3fdb84f83a15057a2af5de347
           created: 1756260979077
-          modified: 1757714298635
+          modified: 1758039914906
           isPrivate: false
           description: ""
           sortKey: -1757707635373
         method: POST
         body:
           mimeType: application/json
-          text: |-
+          text: |
             {
-            	"titulo": "TEST POST DB",
-            	"progresso": "50",
-            	"teste": "teste"
+              "usuario_id": "68c98d611cf924d02d5af12f", 
+              "titulo": "TESTE 1",
+              "prazo": "TESTE 1",
+              "categoria": "Outros",
+              "prioridade": "Baixa",
+              "progresso": 100,
+              "descricao": "TESTE 1"
             }
         headers:
           - name: Content-Type
@@ -248,6 +252,27 @@ collection:
         headers:
           - name: User-Agent
             value: insomnia/11.5.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/meta/
+        name: Get goal by user Id
+        meta:
+          id: req_1eb278eeaaf64c90a7c53b0818bfee50
+          created: 1758039965759
+          modified: 1758082036071
+          isPrivate: false
+          description: ""
+          sortKey: -1757707635298
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
         settings:
           renderRequestBody: true
           encodeUrl: true
