@@ -13,8 +13,6 @@ import Usuario from "./models/Usuario.js";
 
 import authRoutes from "./routes/auth.js";
 
-
-
 const app = express();
 
 app.use(cors());

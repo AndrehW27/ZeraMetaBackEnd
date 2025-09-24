@@ -16,7 +16,18 @@ router.post("/cadastro", async (req, res) => {
     const newUser = new Usuario({ email, senha, nome });
     await newUser.save();
 
-    res.json({ msg: "Usuario registered successfully" });
+    // Generate JWT token for the new user
+    const token = jwt.sign(
+      { id: newUser._id },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
+
+    res.json({
+      msg: "Usuario registered successfully",
+      token,
+      user: { id: newUser._id, email: newUser.email, nome: newUser.nome }
+    });
   } catch (err) {
     res.status(500).json({ msg: err.message });
   }
@@ -43,6 +54,30 @@ router.post("/login", async (req, res) => {
       token,
       user: { id: user._id, email: user.email, nome: user.nome }
     });
+
+    // ...inside login route...
+    console.log("Senha enviada:", senha);
+    console.log("Senha no banco:", user.senha);
+
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+    console.log("Senha enviada:", senha);
+    console.log("Senha no banco:", user.senha);
+  }
+});
+
+// Redefinir Senha
+router.post("/redefinir-senha", async (req, res) => {
+  try {
+    const { email, novaSenha } = req.body;
+
+    const user = await Usuario.findOne({ email });
+    if (!user) return res.status(404).json({ msg: "User not found" });
+
+    user.senha = novaSenha; // Do NOT hash here!
+    await user.save();
+
+    res.json({ msg: "Senha redefinida com sucesso" });
   } catch (err) {
     res.status(500).json({ msg: err.message });
   }
