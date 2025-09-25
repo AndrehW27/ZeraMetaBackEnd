@@ -1,6 +1,8 @@
 import express from "express";
 import bcrypt from "bcryptjs";   // 👈 também aqui
 import jwt from "jsonwebtoken";
+import nodemailer from "nodemailer";
+import crypto from "crypto";
 import Usuario from "../models/Usuario.js";
 
 const router = express.Router();
@@ -78,6 +80,45 @@ router.post("/redefinir-senha", async (req, res) => {
     await user.save();
 
     res.json({ msg: "Senha redefinida com sucesso" });
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
+});
+
+// Redefinir senha por email (envia link)
+router.post("/redefinir-senha-email", async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await Usuario.findOne({ email });
+    if (!user) return res.status(404).json({ msg: "User not found" });
+
+    // Generate token and expiration
+    const resetToken = crypto.randomBytes(32).toString("hex");
+    const resetTokenExpires = Date.now() + 3600000; // 1 hour
+
+    user.resetToken = resetToken;
+    user.resetTokenExpires = resetTokenExpires;
+    await user.save();
+
+    // Configure nodemailer
+    const transporter = nodemailer.createTransport({
+      service: process.env.EMAIL_SERVICE,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    const resetLink = `${process.env.FRONTEND_URL}/senha-por-email?token=${resetToken}&email=${email}`;
+
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Redefinição de senha",
+      html: `<p>Para redefinir sua senha, clique <a href="${resetLink}">aqui</a>. Este link expira em 1 hora.</p>`,
+    });
+
+    res.json({ msg: "Link de redefinição de senha enviado para o email." });
   } catch (err) {
     res.status(500).json({ msg: err.message });
   }

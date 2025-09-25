@@ -1,6 +1,15 @@
 import dotenv from "dotenv";
 dotenv.config(); // 👈 must be before mongoose.connect()
 
+// Check for essential environment variables
+const requiredEnvVars = ['MONGO_URI', 'JWT_SECRET', 'EMAIL_SERVICE', 'EMAIL_USER', 'EMAIL_PASS', 'FRONTEND_URL'];
+for (const varName of requiredEnvVars) {
+  if (!process.env[varName]) {
+    console.error(`FATAL ERROR: Environment variable ${varName} is not defined.`);
+    process.exit(1); // Exit the process with an error code
+  }
+}
+
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -39,7 +48,8 @@ app.use("/rank", rankRoutes);
 app.use("/api/auth", authRoutes);
 
 // Subir servidor
-app.listen(3000, () => {
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
   console.log("Servidor rodando na porta 3000");
   console.log("Banco conectado:", mongoose.connection.name);
 });

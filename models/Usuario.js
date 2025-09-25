@@ -6,7 +6,7 @@ const usuarioSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   senha: { type: String, required: true },
   telefone: { type: String, default: "" },
-  plano: { type: String, default: "Free" },
+  plano: { type: String, enum: ['Explorer', 'Achiever', 'Champion', 'Legend'], default: "Explorer" },
   foto_perfil_url: { type: String, default: "" }
 });
 
