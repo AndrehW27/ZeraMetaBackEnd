@@ -25,8 +25,7 @@ import authRoutes from "./routes/auth.js";
 const app = express();
 
 app.use(cors({
-  origin: '*'  // temporário para testes
-  // origin: 'https://meu-front-end.netlify.app' // depois restrinja só pro seu front
+  origin: 'https://getgoals.netlify.app/' 
 }));
 app.use(express.json());
 
