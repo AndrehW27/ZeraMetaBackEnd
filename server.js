@@ -24,7 +24,10 @@ import authRoutes from "./routes/auth.js";
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: '*'  // temporário para testes
+  // origin: 'https://meu-front-end.netlify.app' // depois restrinja só pro seu front
+}));
 app.use(express.json());
 
 // Conectar ao MongoDB
@@ -39,12 +42,15 @@ mongoose.connect(process.env.MONGO_URI, {
 })
 .catch(err => console.error("Erro ao conectar no MongoDB:", err));
 
-// Usar as rotas
-app.use("/usuario", usuarioRoutes);
-app.use("/meta", metaRoutes);
-app.use("/rank", rankRoutes);
+// 🌐 Health-check (rota raiz)
+app.get("/", (req, res) => {
+  res.json({ status: "ok", message: "🚀 API do ZeraMeta está rodando!" });
+});
 
-// Routes after authentication middleware
+// 📌 Padronizar rotas com /api
+app.use("/api/usuario", usuarioRoutes);
+app.use("/api/meta", metaRoutes);
+app.use("/api/rank", rankRoutes);
 app.use("/api/auth", authRoutes);
 
 // Subir servidor
