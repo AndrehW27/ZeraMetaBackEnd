@@ -58,13 +58,13 @@ router.post("/login", async (req, res) => {
     });
 
     // ...inside login route...
-    console.log("Senha enviada:", senha);
-    console.log("Senha no banco:", user.senha);
+    // console.log("Senha enviada:", senha);
+    // console.log("Senha no banco:", user.senha);
 
   } catch (err) {
     res.status(500).json({ msg: err.message });
-    console.log("Senha enviada:", senha);
-    console.log("Senha no banco:", user.senha);
+    // console.log("Senha enviada:", senha);
+    // console.log("Senha no banco:", user.senha);
   }
 });
 
@@ -89,16 +89,26 @@ router.post("/redefinir-senha", async (req, res) => {
 router.post("/redefinir-senha-email", async (req, res) => {
   try {
     const { email } = req.body;
-    const user = await Usuario.findOne({ email });
-    if (!user) return res.status(404).json({ msg: "User not found" });
 
     // Generate token and expiration
     const resetToken = crypto.randomBytes(32).toString("hex");
     const resetTokenExpires = Date.now() + 3600000; // 1 hour
 
-    user.resetToken = resetToken;
-    user.resetTokenExpires = resetTokenExpires;
-    await user.save();
+    // Use updateOne to set the token without triggering the 'save' hook
+    const result = await Usuario.updateOne(
+      { email: email },
+      {
+        $set: {
+          resetToken: resetToken,
+          resetTokenExpires: resetTokenExpires,
+        },
+      }
+    );
+
+    // Check if a document was actually found and updated
+    if (result.matchedCount === 0) {
+      return res.status(404).json({ msg: "User not found" });
+    }
 
     // Configure nodemailer
     const transporter = nodemailer.createTransport({
