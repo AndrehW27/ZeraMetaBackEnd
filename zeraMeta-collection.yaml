@@ -14,12 +14,12 @@ collection:
       sortKey: -1757707614512
       description: ""
     children:
-      - url: http://localhost:3000/usuario/68ca2c9ff416c09e8f7cd996
+      - url: http://localhost:3000/usuario/68d43bcff249e23d72db9af2
         name: Get user by Id
         meta:
           id: req_bb3c3708d2734b6cac3519d3328042cd
           created: 1757470030201
-          modified: 1758080292876
+          modified: 1758748782437
           isPrivate: false
           description: ""
           sortKey: -1757707650756
@@ -120,12 +120,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:3000/usuario/68c98d611cf924d02d5af12f
+      - url: http://localhost:3000/usuario/68d322e41f8344b845959c89
         name: Delete user
         meta:
           id: req_82f15570f0d94a14a137d36975b3a494
           created: 1757779621896
-          modified: 1758078747136
+          modified: 1758668217602
           isPrivate: false
           description: ""
           sortKey: -1757707650456
@@ -154,7 +154,7 @@ collection:
         meta:
           id: req_64391ac3fdb84f83a15057a2af5de347
           created: 1756260979077
-          modified: 1758039914906
+          modified: 1758652508701
           isPrivate: false
           description: ""
           sortKey: -1757707635373
@@ -163,7 +163,7 @@ collection:
           mimeType: application/json
           text: |
             {
-              "usuario_id": "68c98d611cf924d02d5af12f", 
+              "usuario_id": "68cf73d44bea2393168c235e", 
               "titulo": "TESTE 1",
               "prazo": "TESTE 1",
               "categoria": "Outros",
@@ -174,8 +174,11 @@ collection:
         headers:
           - name: Content-Type
             value: application/json
-          - name: User-Agent
-            value: insomnia/11.5.0
+            id: pair_b2e6431f6bdd429eb5a59da58f8b83ce
+          - name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Y2Y3M2Q0NGJlYTIzOTMxNjhjMjM1ZSIsImlhdCI6MTc1ODY1MjAzMiwiZXhwIjoxNzU4NzM4NDMyfQ.EC1srj8_Yotr9uT3LBkrFxhRA_gI1MgVSJTnaKgtPWg
+            id: pair_00b25bba70b242f79e9bb5729cf06633
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -189,7 +192,7 @@ collection:
         meta:
           id: req_98a495b678234a0d95bb10bfd8da7cac
           created: 1756264459491
-          modified: 1757710709147
+          modified: 1758667976399
           isPrivate: false
           description: ""
           sortKey: -1757707635323
@@ -198,10 +201,19 @@ collection:
           mimeType: application/json
           text: ""
         headers:
-          - name: Content-Type
+          - id: pair_88fb53f55d8e496a88713a60e08f2eab
+            name: Content-Type
             value: application/json
-          - name: User-Agent
-            value: insomnia/11.5.0
+            description: ""
+            disabled: false
+          - id: pair_3bbc48a76ce3474cbdd0484fbe84e368
+            name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Y2Y3M2Q0NGJlYTIzOTMxNjhjMjM1ZSIsImlhdCI6MTc1ODY2Nzk2MywiZXhwIjoxNzU4NzU0MzYzfQ.je60O6wwB7W8qL1b87e1L5zT9W0xGEwlVCg5ClLJWvs
+            description: ""
+            disabled: false
+        authentication:
+          type: none
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -422,6 +434,136 @@ collection:
             send: true
             store: true
           rebuildPath: true
+  - name: Auth
+    meta:
+      id: fld_45bbf27fd508410bb3a65fa1d8d6c713
+      created: 1758301514951
+      modified: 1758301514951
+      sortKey: -1758301514951
+      description: ""
+    children:
+      - url: http://localhost:3000/api/auth/login
+        name: Login
+        meta:
+          id: req_c29f37412f484c8c9bebdab902258032
+          created: 1758301518712
+          modified: 1758739274788
+          isPrivate: false
+          description: ""
+          sortKey: -1758319973711
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email":"adm@gmail.com",
+            	"senha":"adm?123123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/auth/cadastro
+        name: Register user
+        meta:
+          id: req_f07f1ba1ac114b50856242732e925b87
+          created: 1758338428710
+          modified: 1758742568039
+          isPrivate: false
+          description: ""
+          sortKey: -1758338428710
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email":"andrehwillian@hotmail.com",
+              "senha": "adm?123123",
+              "nome": "Andre HOTMAIL"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/auth/redefinir-senha
+        name: Password reset
+        meta:
+          id: req_2eee7754a2434639bdb892bcf11f62d1
+          created: 1758669323732
+          modified: 1758739439957
+          isPrivate: false
+          description: ""
+          sortKey: -1758319973611
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email":"adm@gmail.com",
+            	"novaSenha":"adm?123123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/auth/redefinir-senha-email
+        name: Password reset by email
+        meta:
+          id: req_53988869c6944f4a96b38cecdb54e6e9
+          created: 1758739339380
+          modified: 1758742539925
+          isPrivate: false
+          description: ""
+          sortKey: -1758017297176
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email":"andrehwillian@hotmail.com"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            id: pair_53feb9c000d24e6ca04988ed960fb11f
+          - name: User-Agent
+            value: insomnia/11.6.1
+            id: pair_3cee544ac2d048f9bfcf4ab1c3de2500
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
 cookieJar:
   name: Default Jar
   meta:
@@ -429,9 +571,12 @@ cookieJar:
     created: 1756260978979
     modified: 1756260978979
 environments:
-  name: Base Environment
+  name: Dev
   meta:
     id: env_7d7edc14fc7e60e6e3135d38aef75136dfd51f51
     created: 1756260978976
-    modified: 1756260978976
+    modified: 1758425840034
     isPrivate: false
+  data:
+    JWT:
+      JWT: "123"
