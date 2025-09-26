@@ -39,17 +39,15 @@ mongoose.connect(process.env.MONGO_URI, {
 })
 .catch(err => console.error("Erro ao conectar no MongoDB:", err));
 
-// Rota raiz (teste)
+// 🌐 Health-check (rota raiz)
 app.get("/", (req, res) => {
-  res.send("🚀 API do ZeraMeta está rodando!");
+  res.json({ status: "ok", message: "🚀 API do ZeraMeta está rodando!" });
 });
 
-// Usar as rotas
-app.use("/usuario", usuarioRoutes);
-app.use("/meta", metaRoutes);
-app.use("/rank", rankRoutes);
-
-// Routes after authentication middleware
+// 📌 Padronizar rotas com /api
+app.use("/api/usuario", usuarioRoutes);
+app.use("/api/meta", metaRoutes);
+app.use("/api/rank", rankRoutes);
 app.use("/api/auth", authRoutes);
 
 // Subir servidor
