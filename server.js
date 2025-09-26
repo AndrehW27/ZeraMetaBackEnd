@@ -25,6 +25,11 @@ mongoose.connect(process.env.MONGO_URI, {
 })
 .catch(err => console.error("Erro ao conectar no MongoDB:", err));
 
+// Rota raiz (teste)
+app.get("/", (req, res) => {
+  res.send("🚀 API do ZeraMeta está rodando!");
+});
+
 // Usar as rotas
 app.use("/usuario", usuarioRoutes);
 app.use("/meta", metaRoutes);
