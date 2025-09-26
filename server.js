@@ -24,7 +24,10 @@ import authRoutes from "./routes/auth.js";
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: '*'  // temporário para testes
+  // origin: 'https://meu-front-end.netlify.app' // depois restrinja só pro seu front
+}));
 app.use(express.json());
 
 // Conectar ao MongoDB
