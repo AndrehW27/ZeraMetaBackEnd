@@ -1,12 +1,26 @@
+import dotenv from "dotenv";
+dotenv.config(); // 👈 must be before mongoose.connect()
+
+// Check for essential environment variables
+const requiredEnvVars = ['MONGO_URI', 'JWT_SECRET', 'EMAIL_SERVICE', 'EMAIL_USER', 'EMAIL_PASS', 'FRONTEND_URL'];
+for (const varName of requiredEnvVars) {
+  if (!process.env[varName]) {
+    console.error(`FATAL ERROR: Environment variable ${varName} is not defined.`);
+    process.exit(1); // Exit the process with an error code
+  }
+}
+
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import usuarioRoutes from "./routes/usuarioRoutes.js";
 import metaRoutes from "./routes/metaRoutes.js";
 import rankRoutes from "./routes/rankRoutes.js";
-import dotenv from "dotenv";
+import Usuario from "./models/Usuario.js";
+// import Meta from "./models/Meta.js";
+// import Rank from "./routes/rankRoutes.js";
 
-dotenv.config(); // 👈 must be before mongoose.connect()
+import authRoutes from "./routes/auth.js";
 
 const app = express();
 
@@ -35,8 +49,12 @@ app.use("/usuario", usuarioRoutes);
 app.use("/meta", metaRoutes);
 app.use("/rank", rankRoutes);
 
+// Routes after authentication middleware
+app.use("/api/auth", authRoutes);
+
 // Subir servidor
-app.listen(3000, () => {
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
   console.log("Servidor rodando na porta 3000");
   console.log("Banco conectado:", mongoose.connection.name);
 });
