@@ -25,7 +25,12 @@ import authRoutes from "./routes/auth.js";
 const app = express();
 
 app.use(cors({
-  origin: 'https://getgoals.netlify.app/' 
+  origin: [
+    "https://getgoals.netlify.app",
+    "http://localhost:4200",
+    "http://localhost:3000"
+  ],
+  credentials: true
 }));
 app.use(express.json());
 
