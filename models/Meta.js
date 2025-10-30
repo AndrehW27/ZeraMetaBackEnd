@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-  
+
 
 
 const metaSchema = new mongoose.Schema({
@@ -12,7 +12,13 @@ const metaSchema = new mongoose.Schema({
     status: { type: String, enum: ["Novo", "Em andamento", "Pausado", "Concluído"], default: "Novo" },
     categoria: { type: String, enum: ["Outros", "Saúde", "Finanças", "Educação", "Pessoal", "Relacionamento", "Profissional", "Lazer", "Viagem", "Hobbie"], default: "Outros" },
     enviarLembrete: { type: Boolean, default: false },
-    criarMiniMetas: { type: Boolean, default: false }
+    criarMiniMetas: { type: Boolean, default: false },
+    miniGoals: [
+        {
+            titulo: { type: String, required: true },
+            concluido: { type: Boolean, default: false }
+        }
+    ]
 }, { timestamps: true });
 
 const Meta = mongoose.model("Meta", metaSchema);

@@ -19,7 +19,8 @@ export const criarMeta = async (req, res) => {
       descricao,
       status: "Novo", // default value
       enviarLembrete: false,
-      criarMiniMetas: false
+      criarMiniMetas: false,
+      miniGoals: []
     });
 
     await novaMeta.save();
