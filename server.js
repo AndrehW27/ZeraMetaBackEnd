@@ -24,14 +24,21 @@ import authRoutes from "./routes/auth.js";
 
 const app = express();
 
-app.use(cors({
+const corsOptions = {
   origin: [
-    "https://getgoals.netlify.app",
-    "http://localhost:4200",
-    "http://localhost:3000"
+    'https://zera-meta.vercel.app',
+    'https://getgoals.netlify.app',
+    'http://localhost:4200',
+    'http://localhost:3000'
   ],
-  credentials: true
-}));
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+// app.options('*', cors(corsOptions)); // responde preflight
 app.use(express.json());
 
 // Conectar ao MongoDB
