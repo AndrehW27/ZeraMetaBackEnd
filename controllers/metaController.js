@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 // Create a new meta
 export const criarMeta = async (req, res) => {
   try {
-    const { usuario_id, titulo, prazo, categoria, prioridade, progresso, descricao } = req.body;
+    const { usuario_id, titulo, prazo, categoria, prioridade, progresso, descricao, miniGoals } = req.body;
 
     // Ensure usuario_id is an ObjectId
     const objectId = new mongoose.Types.ObjectId(usuario_id);
@@ -20,7 +20,7 @@ export const criarMeta = async (req, res) => {
       status: "Novo", // default value
       enviarLembrete: false,
       criarMiniMetas: false,
-      miniGoals: []
+      miniGoals
     });
 
     await novaMeta.save();
