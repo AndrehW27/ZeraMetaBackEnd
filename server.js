@@ -19,6 +19,7 @@ import rankRoutes from "./routes/rankRoutes.js";
 import Usuario from "./models/Usuario.js";
 // import Meta from "./models/Meta.js";
 // import Rank from "./routes/rankRoutes.js";
+import openaiRoutes from "./routes/openaiRoutes.js";
 
 import authRoutes from "./routes/auth.js";
 
@@ -63,6 +64,8 @@ app.use("/api/usuario", usuarioRoutes);
 app.use("/api/meta", metaRoutes);
 app.use("/api/rank", rankRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/openai", openaiRoutes);
+
 
 // Subir servidor
 const PORT = process.env.PORT || 3000;
