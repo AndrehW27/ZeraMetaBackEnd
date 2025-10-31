@@ -8,7 +8,7 @@ const metaSchema = new mongoose.Schema({
     descricao: { type: String },
     progresso: { type: Number, default: 0 },
     prazo: { type: String },
-    prioridade: { type: String, enum: ["Baixa", "Média", "Alta"], default: "Média" },
+    prioridade: { type: String, enum: ["Baixa", "Média", "Alta"], default: "Baixa" },
     status: { type: String, enum: ["Novo", "Em andamento", "Pausado", "Concluído"], default: "Novo" },
     categoria: { type: String, enum: ["Outros", "Saúde", "Finanças", "Educação", "Pessoal", "Relacionamento", "Profissional", "Lazer", "Viagem", "Hobbie"], default: "Outros" },
     enviarLembrete: { type: Boolean, default: false },
