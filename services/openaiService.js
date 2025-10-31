@@ -10,7 +10,7 @@ const client = new OpenAI({
 // Generic function to get suggestions
 export async function getGoalSuggestions(userInput) {
     const completion = await client.chat.completions.create({
-        model: "gpt-5", // or "gpt-4o-mini" if using free-tier endpoints
+        model: "gpt-4o-mini", // or "gpt-4o-mini" if using free-tier endpoints
         messages: [
             {
                 role: "system",
